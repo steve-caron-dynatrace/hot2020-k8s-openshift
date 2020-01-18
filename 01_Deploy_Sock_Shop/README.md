@@ -55,6 +55,6 @@ Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
 
 ---
 
-:arrow_forward: [Next Exercise : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator)
+:arrow_forward: [Next : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator)
 
 :arrow_up_small: [Back to overview](../)
