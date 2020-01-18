@@ -53,4 +53,8 @@ Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
 
 ![sockshop](assets/sockshop.png)
 
+---
 
+:arrow_forward: [Next Exercise : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator)
+
+:arrow_up_small: [Back to overview](../)

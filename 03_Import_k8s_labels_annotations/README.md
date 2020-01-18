@@ -61,6 +61,6 @@ You will see that not only processes are showing up but services too. This is be
 
 ---
 
-[Previous Step: Exercise #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator) :arrow_backward: :arrow_forward: [Next Step: Deploy Jenkins](../3_Deploy_Jenkins)
+[Previous Exercise : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator) :arrow_backward: :arrow_forward: [Next Exercise : #4 Import tag and properties using container environment variables](../04_Import_tags_properties_with_env_variables)
 
 :arrow_up_small: [Back to overview](../)

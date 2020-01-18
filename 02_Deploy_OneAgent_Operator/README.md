@@ -115,3 +115,8 @@ Execute this command to check pod status until all are ready (ctrl-c to stop):
 $ kubectl get po --all-namespaces -l product=sockshop –w
 ```
 
+---
+
+[Previous Exercise : #1 Deploy the Sock Shop app](../01_Deploy_Sock_Shop) :arrow_backward: :arrow_forward: [Next Exercise : #3 Automatic import of Kubernetes labels and annotations](../03_Import_k8s_labels_annotations)
+
+:arrow_up_small: [Back to overview](../)
