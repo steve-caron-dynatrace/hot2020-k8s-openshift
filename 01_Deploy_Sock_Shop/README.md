@@ -28,7 +28,8 @@ Check the pods deployed in production and in dev
 $ kubectl get po --all-namespaces -l product=sockshop
 ```
 Notice some pods status and ready state. Watch pods (run the previous command with flag -w) until all are running and ready.
-`Screenshot placeholder`
+
+![validation](assets/validate.png)
 
 ## Access the Sock Shop web app
 
@@ -39,7 +40,9 @@ You can obtain the app URL by running these commands, respectively for the produ
 $ kubectl get svc front-end -n production
 $ kubectl get svc front-end -n dev
 ```
-`Screenshot placeholder`
+
+![service](assets/service.png)
+
 Notice the port (8080)
 
 ## Explore the app
@@ -47,6 +50,7 @@ Notice the port (8080)
 Load the Sock Shop app page to your browser.
 Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
 
-`Screenshot placeholder`
+
+![sockshop](assets/sockshop.png)
 
 
