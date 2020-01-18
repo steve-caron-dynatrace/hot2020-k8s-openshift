@@ -43,6 +43,8 @@ In the Dynatrace console:
 
 ![pg_labels_annotations](assets/pg_labels_annotations.png)
 
+![pg_labels_annotations](assets/pg_labels_annotations2.png)
+
 ## Search/filter with tags based on labels
 
 - Go in the Technologies or the Services and Transactions view. 
