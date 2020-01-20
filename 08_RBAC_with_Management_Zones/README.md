@@ -3,6 +3,9 @@
 ## Create new User Groups
 
 - Go in <b>User</b> (User icon, top right) <b>-> Account Settings -> Group Management</b>
+
+![account_settings](assets/account_settings.png)
+
 - Click on <b>Create new group</b> and configure the group to only access Sock Shop dev environment (management zone). 
 
 ![new_user_group](assets/new_user_group.png)
@@ -11,9 +14,9 @@
 
 - Go in <b>User Management</b> and click <b>Invite user</b>
 - Enter an email address <b>(1)</b> for the new user (use a real email address – you will need to retrieve the invite email)
-- Add the user to the sock shop dev group only <b(2)</b>
+- Add the user to the `sock shop dev` group only <b>(2)</b>
 - Expand the <b>Permission preview</b> to validate the user only access  the <b>ns:dev</b> management zone
-- Click on <b>Invite</b>
+- Click on <b>Invite</b> <b>(3)</b>
 
 ![invite_new_user](assets/invite_new_user.png)
 
