@@ -8,7 +8,7 @@ In a similar manner than the [previous exercise](../06_Management_Zones_by_appli
 - <b>Hint #2</b> : Your Management Zones will need 2 conditions
 - <b>Hint #3</b> : You need to define 2 Management Zones
 
-Solution is available [here](./07_1_07_1_Solution).
+Solution is available [here](./07_1_Solution).
 
 ## Validate Management Zones
 

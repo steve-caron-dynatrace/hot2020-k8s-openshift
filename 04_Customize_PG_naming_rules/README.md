@@ -56,6 +56,6 @@ Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b>
 
 ---
 
-[Previous : #3 Automatic import of k8s labels and annotations](../03_Import_k8s_labels_annotations) :arrow_backward: :arrow_forward: [Next : #5 Customize Service naming rules for k8s](../05_Customize_Services_naming_rules)
+[Previous : #3 Automatic import of k8s labels and annotations](../03_Import_k8s_labels_annotations) :arrow_backward: :arrow_forward: [Next : #5 Customize Service naming rules for k8s](../05_Customize_Service_naming_rules)
 
 :arrow_up_small: [Back to overview](../)

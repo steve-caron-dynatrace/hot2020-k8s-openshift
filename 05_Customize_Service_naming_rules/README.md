@@ -59,6 +59,6 @@ Navigate to <b>Technologies</b> and <b>Transactions & Services</b> views to look
 
 ---
 
-[Previous : #4 Customize Process Group naming rules for k8s](../04_Customize_PG_naming_rules) :arrow_backward: :arrow_forward: [Next : #6 Customize Service naming rules for k8s](../05_Customize_Services_naming_rules)
+[Previous : #4 Customize Process Group naming rules for k8s](../04_Customize_PG_naming_rules) :arrow_backward: :arrow_forward: [Next : #6 Create Management Zones by application](../06_Management_Zones_by_application)
 
 :arrow_up_small: [Back to overview](../)

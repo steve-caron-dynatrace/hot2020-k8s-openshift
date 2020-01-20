@@ -61,6 +61,6 @@ You will see that not only processes are showing up but services too. This is be
 
 ---
 
-[Previous : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator) :arrow_backward: :arrow_forward: [Next : #4 Import tags and properties using environment variables](../04_Import_tags_properties_with_env_variables)
+[Previous : #2 Deploy the OneAgent Operator](../02_Deploy_OneAgent_Operator) :arrow_backward: :arrow_forward: [Next : #4 Customize Process Group naming rules for k8s](../04_Customize_PG_naming_rules)
 
 :arrow_up_small: [Back to overview](../)
