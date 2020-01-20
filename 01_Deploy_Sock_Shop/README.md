@@ -4,7 +4,7 @@
 
 First download the workmaterial from the github repo:
 ```sh
-$ git clone https://github.com/se-bootcamp-2019/dynatrace-k8s 
+$ git clone https://github.com/steve-caron-dynatrace/dynatrace-k8s.git
 ```
 Change directory to `dynatrace-k8s`. You can take a look at the deployment script:
 ```sh
