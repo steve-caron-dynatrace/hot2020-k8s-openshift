@@ -2,7 +2,7 @@
 
 ## Script overview
 
-First download the workmaterial from the github repo:
+First download scripts and manifests required for this class from the github repo:
 ```sh
 $ git clone https://github.com/steve-caron-dynatrace/dynatrace-k8s.git
 ```

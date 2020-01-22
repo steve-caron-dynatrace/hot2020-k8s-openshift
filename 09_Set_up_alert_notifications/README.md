@@ -117,6 +117,6 @@ In order to complete this exercise and have alerts being sent, we need to create
 
 ---
 
-[Previous : #8 RBAC with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Configure k8s cluster monitoring integration](../09_Set_up_alert_notifications)
+[Previous : #8 RBAC with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Configure k8s cluster monitoring integration](../10_Configure_k8s_cluster_monitoring_integration)
 
 :arrow_up_small: [Back to overview](../)
