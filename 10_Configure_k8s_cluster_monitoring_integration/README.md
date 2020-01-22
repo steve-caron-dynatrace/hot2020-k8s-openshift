@@ -12,12 +12,12 @@
     ![install_ActiveGate](assets/install_ActiveGate.png)
 
 - Select Linux.
-- Copy the wget command (from step 2) to download the installer installer script and paste it to your terminal to run it on your bastion VM. See screen shot on next slide.
-- Copy the command to run the installer script (step 4) and execute it in your terminal with elevated permissions (precede with sudo)
+- Copy the wget command (from step 2 - see screenshot below) to download the installer script and paste it to your terminal to run it on your bastion VM.
+- Copy the command to run the installer script (step 4 - see screenshot below) and execute it in your terminal with elevated permissions (precede the command with sudo)
 
   ![ActiveGate_linux_installation](assets/ActiveGate_linux_installation.png)
 
-- Click on Show deployment status to validate the ActiveGate is deployed and connected to your SaaS tenant. See that the Kubernetes module is active 
+- Click on Show deployment status (step 5) to validate the ActiveGate is deployed and connected to your SaaS tenant. See that the Kubernetes module is active. 
 
 ![deployment_status](assets/deployment_status.png)
 
@@ -25,6 +25,7 @@
 
 1. You first need a Kubernetes service account with the right cluster role to access the Kubernetes API
 2. Collect the information required to configure the connection
+   
    - API endpoint URL
    - Service account Bearer token 
 
@@ -110,15 +111,32 @@ Verify your certificate file:
 
 ### Add the certificate to the keystore
 
-You will then import this certificate to the ActiveGate keystore using the Java keytool (installed with the ActiveGate):
+You will then import this certificate to a Java keystore using the Java keytool (installed with the ActiveGate):
 
 ```sh
-$ sudo /opt/dynatrace/gateway/jre/bin/keytool -import -file dt_k8s_api.pem -alias dt_k8s_api -keystore /opt/dynatrace/gateway/jre/lib/security/cacerts
+$ sudo /opt/dynatrace/gateway/jre/bin/keytool -import -file dt_k8s_api.pem -alias dt_k8s_api -keystore /var/lib/dynatrace/gateway/ssl/mytrusted.jks
 ```
 
   - This will prompt you for a password. It is : `changeit`
 
-### Restart the ActiveGatte
+You then need to add this keystore as the trusted keystore for the ActiveGate. To do so, you need to specify this in a custom configuration file.
+
+This custom config file has already been prepared for you. It's content is:
+
+```
+[collector]
+trustedstore = mytrusted.jks
+trustedstore-password = changeit
+trustedstore-type = JKS
+```
+
+- Copy the `custom.properties` file to the ActiveGate config directory:
+
+```sh
+$ sudo cp custom.properties /var/lib/dynatrace/gateway/config/custom.properties
+```
+
+### Restart the ActiveGate
 
 You need to restart the ActiveGate for the change to the keystore to be effective.
 
@@ -145,21 +163,27 @@ It will take a few minutes before the dashboard gets populated with data.
 Navigate in your Kubernetes cluster monitoring dashboard:
 
   - Look at resource <b>usage</b>, <b>requests</b>, <b>limits</b>, <b>available</b>
-  
 
+![cluster_monitoring_dashboard](assets/cluster_monitoring_dashboard.png)
 
-  - The dahsboard displays the list of cluster nodes
+  - The dashboard displays the list of cluster nodes
+
+    ![cluster_nodes](assets/cluster_nodes.png)
+
     - You can filter by node labels
 
+        ![node_analysis_filter](assets/node_analysis_filter.png)
 
 Drill down to a node.
 
-- You will see the <b>Host</b> view is now showing additional metadata and metrics:
+- You see the <b>Host</b> view is now showing additional metadata and metrics:
   
   - Kubernetes cluster (link)
   - Kubernetes labels (node labels)
   - Node CPU requests and limits
   - Node Memory requests and limits
+
+![host_view](assets/host_view.png)
 
 ---
 
