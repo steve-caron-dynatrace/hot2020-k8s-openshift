@@ -9,7 +9,7 @@ $ git clone https://github.com/steve-caron-dynatrace/dynatrace-k8s.git
 Change directory to `dynatrace-k8s`. You can take a look at the deployment script:
 ```sh
 $ cd dynatrace-k8s
-$ less deploy-sockshop.sh
+$ cat deploy-sockshop.sh
 ```
 The script does the following tasks:
 - Create a dev namespace
