@@ -1,7 +1,6 @@
 # Exercise #2 Deploy the OneAgent Operator
 
 ## Gather environment and token info
-### Environment ID
 
 To configure and deploy the OneAgent Operator, we will need the following info from your SaaS tenant
 
@@ -11,7 +10,15 @@ To configure and deploy the OneAgent Operator, we will need the following info f
 
 The installation procedure is also documented [here](https://www.dynatrace.com/support/help/shortlink/kubernetes-deploy) 
 
-For Dynatrace SaaS, the environment ID is your tenant ID. You can find it in the first part of your URL, e.g. `https://ENVIRONMENTID.sprint.dynatracelabs.com` . Copy it to your cheat sheet.
+From your bastion host terminal, execute the following script to enter this info so it can be stored in a config file and you don't need to type or copy-paste those again during the class.
+
+```
+$ ./get-dt-cfg.sh
+```
+
+### Environment ID
+
+For Dynatrace SaaS, the environment ID is your tenant ID. You can find it in the first part of your URL, e.g. `https://ENVIRONMENTID.sprint.dynatracelabs.com` .
 
 - For example, for https://jwx05250.sprint.dynatracelabs.com , ENVIRONMENT ID=jwx05250
 
@@ -19,10 +26,10 @@ For Dynatrace SaaS, the environment ID is your tenant ID. You can find it in the
 
 Go in Settings -> Integration -> Dynatrace API
 
-1. Click on Generate Token
+1. Click on <b>Generate Token</b>
 2. Enter a name for your token (e.g. k8sOperator)
-3. Copy the token value and paste it in your cheat sheet (API_TOKEN)
-4. Don't forget to click on the Save button
+3. Copy the token value and paste it to your bastion terminal script prompt : API token 
+4. Don't forget to click on the <b>Generate</b> button
 
 ![api_token](assets/api_token.png) 
 
@@ -31,9 +38,24 @@ Go in Settings -> Integration -> Dynatrace API
 Go in Settings -> Integration -> Platform as a Service
 1. Either copy the existing InstallerDownload token or click on Generate Token
 2. Enter a name for your token (e.g. k8sOperatorPaaS), click Save
-3. Copy the token value and paste it in your cheat sheet (PAAS_TOKEN)
+3. Copy the token value and paste it to your bastion terminal script prompt : PaaS token
 
 ![paas_token](assets/paas_token.png)
+
+### Config Token
+
+This is an additional token you will create. It is not needed for the Operator itself but it will be needed to automate some configurations in Dynatrace. This will, for example, create Web Application monitoring configuration and create Synthetic Browser Monitors to generate traffic to the Sock Shop web site.
+
+- Follow the same procedure as for the API token except you will need to grant different access scope to this token than the default.
+
+- Toggle on the following:
+
+  - Create and read synthetic monitors, locations, and nodes
+  - Read configuration
+  - Write configuration
+
+    ![config_token](assets/config_token.png)
+
 
 ## Deploy the Operator
 
@@ -59,7 +81,7 @@ $ kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=A
 Execute the following script, it will download the Operator Custom Resource definition and populate it with the provided Environment ID. 
 
 ```sh
-$ ./config_cr.sh
+$ ./config-cr.sh
 ```
 
 You can validate the cr.yaml file (cat cr.yaml) then create the custom resource:
@@ -84,21 +106,6 @@ Explore the host dashboard.
 
 Explore the Technologies dashboard
 
-
-```sh
-$ git clone https://github.com/se-bootcamp-2019/dynatrace-k8s 
-```
-Change directory to `dynatrace-k8s`. You can take a look at the deployment script:
-```sh
-$ less deploy-sockshop.sh
-```
-The script does the following tasks:
-- Create a dev namespace
-- Create a production namespace
-- Deploy the backend services (databases and message queuing)
-- Deploy the application services
-- Expose frontend and carts services to public internet
-
 ## Recycle the pods for instrumentation
 
 The currently running pods need to be recycled so the processes running in the containers can be instrumented. The instrumentation takes place on process start up.
@@ -112,7 +119,15 @@ $ ./recycle-sockshop-app-pods-to-instrument.sh
 Execute this command to check pod status until all are ready (ctrl-c to stop): 
 
 ```sh
-$ kubectl get po --all-namespaces -l product=sockshop –w
+$ kubectl get po --all-namespaces -l product=sockshop -w
+```
+
+## Configure Dynatrace
+
+Execute the following script to automatically create Web Application monitoring configuration and Synthetic Browser Monitors in Dynatrace. The Synthetic tests will generate steady traffic to your Sock Shop production web app.
+
+```
+$ ./config-dt-webapps-synth.sh 
 ```
 
 ---

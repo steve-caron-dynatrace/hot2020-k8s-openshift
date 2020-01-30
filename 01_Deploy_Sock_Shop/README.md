@@ -34,25 +34,46 @@ Notice some pods status and ready state. Watch pods (run the previous command wi
 
 ## Access the Sock Shop web app
 
-The application deployment created a Service resource of type Load Balancer to expose the frontend service to the public internet.
-You can obtain the app URL by running these commands, respectively for the production and the dev environments:
+The application deployment created a Service resource of type Load Balancer to expose the frontend service to the public internet. It might take a few minutes before the public IPs becomes available.
+You can obtain the app URLs by running this script:
 
-```console
-$ kubectl get svc front-end -n production
-$ kubectl get svc front-end -n dev
+```sh
+$ ./get-sockshop-urls.sh
 ```
+The script will wait until the IPs are available and will then print those. 
 
-![service](assets/service.png)
+![app urls](assets/app_urls.png)
 
-Notice the port (8080)
+Click on the Production or Dev frontend URL to load the Sock Shop home page.
+
+The URLs are stored in the `configs.txt` file. You can always get those by running this command (from the current directory):
+
+```sh
+$ cat configs.txt
+```
+## Create Sock Shop user accounts
+
+This following script will create a few user accounts that will be used to generate traffic on the Production environment:
+
+```sh
+$ ./create-sockshop-accounts.sh
+```
 
 ## Explore the app
 
-Load the Sock Shop app page to your browser.
-Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
-
+Load the Sock Shop app page in your browser.
 
 ![sockshop](assets/sockshop.png)
+
+Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
+
+You can manually register a new account or use one that was created during the previous step:
+
+`username : perform`
+
+`password : 1234`
+
+<b><u>NOTE</u></b>: The checkout service in the application is not currently implemented. You can add items to the shopping cart but you will not be able to checkout.
 
 ---
 
