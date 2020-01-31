@@ -2,18 +2,23 @@
 
 ## Gather environment and token info
 
-To configure and deploy the OneAgent Operator, we will need the following info from your SaaS tenant
+To configure and deploy the OneAgent Operator, we will need the following info from your SaaS tenant:
 
 - Environment ID
-- Installation API token
+- API token
 - PaaS token
 
-The installation procedure is also documented [here](https://www.dynatrace.com/support/help/shortlink/kubernetes-deploy) 
+Note: The installation procedure is also documented [here](https://www.dynatrace.com/support/help/shortlink/kubernetes-deploy) 
 
-From your bastion host terminal, execute the following script to enter this info so it can be stored in a config file and you don't need to type or copy-paste those again during the class.
+From your bastion host terminal, execute the following script to enter this info so it can be stored in the `configs.txt` file and you don't need to type or copy-paste it again during the class.
 
 ```
-$ ./get-dt-cfg.sh
+$ source get-dt-cfg.sh
+```
+Again, you can always, if needed, get those configs printed by running this command (from the current directory):
+
+```sh
+$ cat configs.txt
 ```
 
 ### Environment ID
@@ -72,19 +77,25 @@ Check the logs at any time with the following command (ctrl-C to stop):
 $ kubectl -n dynatrace logs -f deployment/dynatrace-oneagent-operator
 ```
 
-Create the secret (named oneagent) holding the API and PaaS tokens used to authenticate to the Dynatrace cluster. Replace `<API_TOKEN>` and `<PAAS_TOKEN>` with the values copied in your cheat sheet
+Create the secret (named oneagent) holding the API and PaaS tokens used to authenticate to to the Dynatrace cluster.
 
 ```sh
-$ kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=API_TOKEN" --from-literal="paasToken=PAAS_TOKEN"
+$ kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN"
 ```
 
-Execute the following script, it will download the Operator Custom Resource definition and populate it with the provided Environment ID. 
+Execute the following script that will download the Operator Custom Resource definition and populate it with the provided Environment ID. 
 
 ```sh
 $ ./config-cr.sh
 ```
 
-You can validate the cr.yaml file (cat cr.yaml) then create the custom resource:
+You can take a look at the `cr.yaml` file and double-check the `apiUrl` field corresponds to your Dynatrace tenant URL: 
+
+```
+$ cat cr.yaml 
+```
+
+Then create the custom resource:
 
 ```sh
 $ kubectl create -f cr.yaml
@@ -92,19 +103,22 @@ $ kubectl create -f cr.yaml
 
 ## Validate the installation
 
-Execute the following commands to validate the expected pods are running. You should see one pod for the operator and one pod for each of your cluster nodes (3)
+Execute the following commands to validate the expected pods are running. You should see one pod for the operator and one pod for each of your cluster nodes (3):
 
 ```sh
 $ kubectl get pods -n dynatrace -o wide -w
 ```
 
-In the Dynatrace console, look into the Deployment Status and Hosts dashboards, you should see your nodes listed.
+In the Dynatrace console, look into the <b>Deployment Status</b> and <b>Hosts</b> dashboards, you should see your nodes listed.
 
 Explore the host dashboard.
 - Drill down to the containers
 - Drill down to the processes
 
-Explore the Technologies dashboard
+Explore the <b>Technologies</b> dashboard.
+- This shows the containerized processes running on your nodes, grouped by technology (runtime, framework, vendor)
+- Clicking on a technology display the <b>Process Groups</b> for this technology
+- You can drill down to individual process instance
 
 ## Recycle the pods for instrumentation
 
@@ -124,11 +138,18 @@ $ kubectl get po --all-namespaces -l product=sockshop -w
 
 ## Configure Dynatrace
 
-Execute the following script to automatically create Web Application monitoring configuration and Synthetic Browser Monitors in Dynatrace. The Synthetic tests will generate steady traffic to your Sock Shop production web app.
+Execute the following script to automatically create Web Application monitoring configuration and Synthetic Browser Monitors in Dynatrace.
+
+- The idea is to avoid spending time in this exercise to manually configure the Sock Shop web apps and the Synthetic monitors using the Dynatrace console.
+- Instead, the script automates this configuration via the Dynatrace REST API, using the config token you created earlier in this exercise
+
+The Synthetic tests will generate steady traffic to your Sock Shop production web app.
 
 ```
 $ ./config-dt-webapps-synth.sh 
 ```
+
+Once this script is executed, it will take a few minutes before the Synthetic Monitors are activated and start generating traffic.
 
 ---
 

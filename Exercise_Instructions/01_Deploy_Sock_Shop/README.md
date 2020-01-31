@@ -17,6 +17,7 @@ The script does the following tasks:
 - Deploy the backend services (databases and message queuing)
 - Deploy the application services
 - Expose frontend and carts services to public internet
+- Launch continuous load testing on the dev carts service
 
 ## Deploy Sock Shop
 Execute the deployment script:
@@ -34,7 +35,7 @@ Notice some pods status and ready state. Watch pods (run the previous command wi
 
 ## Access the Sock Shop web app
 
-The application deployment created a Service resource of type Load Balancer to expose the frontend service to the public internet. It might take a few minutes before the public IPs becomes available.
+The application deployment created a Service resource of type Load Balancer to expose the frontend service to the public internet. It might take a few minutes before the public IPs become available.
 You can obtain the app URLs by running this script:
 
 ```sh
@@ -51,9 +52,10 @@ The URLs are stored in the `configs.txt` file. You can always get those by runni
 ```sh
 $ cat configs.txt
 ```
+
 ## Create Sock Shop user accounts
 
-This following script will create a few user accounts that will be used to generate traffic on the Production environment:
+This following script will create a few user accounts that will be used by the synthetic monitors to generate traffic on the Production environment:
 
 ```sh
 $ ./create-sockshop-accounts.sh
@@ -65,9 +67,9 @@ Load the Sock Shop app page in your browser.
 
 ![sockshop](assets/sockshop.png)
 
-Run some transactions (Register, Logout, Login, Catalogue, Add to Cart, etc) .
+Play around! Run some transactions from the browser (Register, Logout, Login, Catalogue, Add to Cart, etc).
 
-You can manually register a new account or use one that was created during the previous step:
+You can manually register a new account or log in with one that was created during the previous step:
 
 `username : perform`
 
