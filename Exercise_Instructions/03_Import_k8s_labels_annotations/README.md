@@ -2,22 +2,29 @@
 
 ## Explore metadata in pod definitions
 
-<mark>`PLACEHOLDER - this section needs to be reworked for EKS, ideally using k8s dashboard?`</mark>
+List all the Sock Shop pods running:
 
-Pick up a pod and a namespace (`production` or `dev`) and get the pods details, including the Labels and the Annotations
+```sh
+$ kubectl get po -l product=sockshop --all-namespaces 
+```
+
+Pick up a pod and a namespace (`production` or `dev`) and get the pods details, including the <b>Labels</b> and the <b>Annotations</b>. 
 
 ```sh
 $ kubectl describe po <pod_name> -n <namespace>
 ```
+
 ![pod_describe](assets/pod_describe.png)
 
 ## Grant viewer role to service accounts
 
-The OneAgent will use a pod service account to query for its metadata via the Kubernetes API.
+Those Labels and Annotations are centrally defined and managed in Kubernetes but we also want them available in Dynatrace for grouping and filtering purposes.
 
-The service accounts must be granted viewer role in order to have access
+The OneAgent will use a pod <b>service account</b> to query for this metadata via the Kubernetes REST API.
 
-In the terminal, execute the following command to grant viewer role
+The service accounts must be granted viewer role in order to have this access.
+
+In the terminal, execute the following command to grant viewer role. This needs to be done for each <b>namespace</b>.
 
 ```sh
 $ kubectl create rolebinding serviceaccounts-view --clusterrole=view --group=system:serviceaccounts:production --namespace=production

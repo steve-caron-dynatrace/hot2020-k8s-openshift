@@ -29,7 +29,7 @@ Check the pods deployed in production and in dev
 ```sh
 $ kubectl get po --all-namespaces -l product=sockshop
 ```
-Notice some pods status and ready state. Watch pods (run the previous command with flag -w) until all are running and ready.
+Notice some pods status and ready state. Watch pods (run the previous command with option `-w` added) until all are running and ready.
 
 ![validation](assets/validate.png)
 
@@ -67,7 +67,9 @@ Load the Sock Shop app page in your browser.
 
 ![sockshop](assets/sockshop.png)
 
-Play around! Run some transactions from the browser (Register, Logout, Login, Catalogue, Add to Cart, etc).
+Play around! 
+
+Run some transactions from the browser (Register, Logout, Login, Catalogue, Add to Cart, etc).
 
 You can manually register a new account or log in with one that was created during the previous step:
 

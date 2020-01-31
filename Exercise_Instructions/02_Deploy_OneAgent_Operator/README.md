@@ -10,7 +10,7 @@ To configure and deploy the OneAgent Operator, we will need the following info f
 
 Note: The installation procedure is also documented [here](https://www.dynatrace.com/support/help/shortlink/kubernetes-deploy) 
 
-From your bastion host terminal, execute the following script to enter this info so it can be stored in the `configs.txt` file and you don't need to type or copy-paste it again during the class.
+From your bastion host terminal, execute the following script to enter this info to have it stored in the `configs.txt` file and environment variables so you don't need to type or copy-paste it again during the class.
 
 ```
 $ source get-dt-cfg.sh
@@ -29,20 +29,20 @@ For Dynatrace SaaS, the environment ID is your tenant ID. You can find it in the
 
 ### API Token
 
-Go in Settings -> Integration -> Dynatrace API
+Go in the left menu: <i>Settings -> Integration -> Dynatrace API</i>
 
 1. Click on <b>Generate Token</b>
 2. Enter a name for your token (e.g. k8sOperator)
 3. Copy the token value and paste it to your bastion terminal script prompt : API token 
-4. Don't forget to click on the <b>Generate</b> button
+4. Don't forget to click on the <b>Generate</b> button to save your token
 
 ![api_token](assets/api_token.png) 
 
 ### PaaS Token
 
-Go in Settings -> Integration -> Platform as a Service
-1. Either copy the existing InstallerDownload token or click on Generate Token
-2. Enter a name for your token (e.g. k8sOperatorPaaS), click Save
+Go in <i>Settings -> Integration -> Platform as a Service</i>
+1. Either copy the existing InstallerDownload token or click on <b>Generate Token</b>
+2. Enter a name for your token (e.g. k8sOperatorPaaS), click <b>Save</b>
 3. Copy the token value and paste it to your bastion terminal script prompt : PaaS token
 
 ![paas_token](assets/paas_token.png)
@@ -58,13 +58,21 @@ This is an additional token you will create. It is not needed for the Operator i
   - Create and read synthetic monitors, locations, and nodes
   - Read configuration
   - Write configuration
+  
+- Don't forget to click the <b>Save</b> button!
 
     ![config_token](assets/config_token.png)
 
 
 ## Deploy the Operator
 
+### Operator pod
+
 Execute the following commands to create the objects necessary for the Operator:
+
+- Creates a <b>namespace</b> for Dynatrace-related objects
+- Retrieve the Operator and associated objects definition templates from github (`kubernetes.yaml`)
+- Create the objects  
 
 ```sh
 $ kubectl create namespace dynatrace
@@ -72,18 +80,22 @@ $ LATEST_RELEASE=$(curl -s https://api.github.com/repos/dynatrace/dynatrace-onea
 $ kubectl create -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/$LATEST_RELEASE/deploy/kubernetes.yaml
 ```
 
-Check the logs at any time with the following command (ctrl-C to stop):
+Validate that the Operator pod is running and ready:
 ```sh
-$ kubectl -n dynatrace logs -f deployment/dynatrace-oneagent-operator
+$ kubectl get po -n dynatrace
 ```
 
-Create the secret (named oneagent) holding the API and PaaS tokens used to authenticate to to the Dynatrace cluster.
+![operator_pod](assets/operator_pod.png)
+
+### OneAgent custom resource
+
+Create the secret (named `oneagent`) holding the API and PaaS tokens used to authenticate to to the Dynatrace cluster.
 
 ```sh
 $ kubectl -n dynatrace create secret generic oneagent --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN"
 ```
 
-Execute the following script that will download the Operator Custom Resource definition and populate it with the provided Environment ID. 
+Execute the following script that will download the Operator Custom Resource definition and populate it with the provided Environment ID.
 
 ```sh
 $ ./config-cr.sh
@@ -94,6 +106,9 @@ You can take a look at the `cr.yaml` file and double-check the `apiUrl` field co
 ```
 $ cat cr.yaml 
 ```
+
+![cr_yaml](assets/cr_yaml.png)
+
 
 Then create the custom resource:
 
@@ -108,8 +123,13 @@ Execute the following commands to validate the expected pods are running. You sh
 ```sh
 $ kubectl get pods -n dynatrace -o wide -w
 ```
+Wait until all pods are ready and then stop the command with `Ctrl-C`
+
+![dynatrace_pods](assets/dynatrace_pods.png)
 
 In the Dynatrace console, look into the <b>Deployment Status</b> and <b>Hosts</b> dashboards, you should see your nodes listed.
+
+![hosts](assets/hosts.png)
 
 Explore the host dashboard.
 - Drill down to the containers
@@ -124,21 +144,17 @@ Explore the <b>Technologies</b> dashboard.
 
 The currently running pods need to be recycled so the processes running in the containers can be instrumented. The instrumentation takes place on process start up.
 
-Execute the following script :
+Execute the following script to scale down the deployments to 0 replica and then bring it back up to 1 replica :
 
 ```sh
-$ ./recycle-sockshop-app-pods-to-instrument.sh
+$ ./recycle-sockshop-app-pods.sh
 ```
 
-Execute this command to check pod status until all are ready (ctrl-c to stop): 
-
-```sh
-$ kubectl get po --all-namespaces -l product=sockshop -w
-```
+![deployments](assets/deployments.png)
 
 ## Configure Dynatrace
 
-Execute the following script to automatically create Web Application monitoring configuration and Synthetic Browser Monitors in Dynatrace.
+Execute the following script to automatically create <b>Web Application</b> monitoring configuration and <b>Synthetic Browser Monitors</b> in Dynatrace.
 
 - The idea is to avoid spending time in this exercise to manually configure the Sock Shop web apps and the Synthetic monitors using the Dynatrace console.
 - Instead, the script automates this configuration via the Dynatrace REST API, using the config token you created earlier in this exercise
