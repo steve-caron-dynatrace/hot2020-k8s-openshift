@@ -2,28 +2,29 @@
 
 ## Pre-requisite : Deploy and Environment ActiveGate
 
-- You need an Environment ActiveGate to connect Dynatrace to your Kubernetes cluster API.
-- For this exercise, the Environment ActiveGate will be deployed on your bastion host
+- You need an <b>Environment ActiveGate</b> to connect Dynatrace to your Kubernetes cluster API
+- You typically deploy the ActiveGate on a dedicated VM; running the ActiveGate in a container is not currently supported (but planned for the future)
+- For this exercise, the <b>Environment ActiveGate</b> will be deployed on your bastion host
 
 ### Install the ActiveGate on your bastion host
 
-- In the Dynatrace console, go to <b>Settings -> Deployment Dynatrace</b>, scroll down to the bottom and click on <b>Install ActiveGate</b>
+- In the Dynatrace console, go to <i>Settings -> Deployment Dynatrace</i>, scroll down to the bottom and click on <b>Install ActiveGate</b>
   
     ![install_ActiveGate](assets/install_ActiveGate.png)
 
 - Select Linux.
 - Copy the wget command (from step 2 - see screenshot below) to download the installer script and paste it to your terminal to run it on your bastion VM.
-- Copy the command to run the installer script (step 4 - see screenshot below) and execute it in your terminal with elevated permissions (precede the command with sudo)
+- Copy the command to run the installer script (step 4 - see screenshot below) and execute it in your terminal with elevated permissions (precede the command with `sudo`)
 
   ![ActiveGate_linux_installation](assets/ActiveGate_linux_installation.png)
 
-- Click on Show deployment status (step 5) to validate the ActiveGate is deployed and connected to your SaaS tenant. See that the Kubernetes module is active. 
+- Click on <b>Show deployment status</b> (step 5) to validate the ActiveGate is deployed and connected to your SaaS tenant. See that the Kubernetes module is active. 
 
 ![deployment_status](assets/deployment_status.png)
 
 ## Configure connection to the Kubernetes cluster
 
-1. You first need a Kubernetes service account with the right cluster role to access the Kubernetes API
+1. You first need a Kubernetes <b>service account</b> with the right <b>cluster role</b> to access the Kubernetes API
 2. Collect the information required to configure the connection
    
    - API endpoint URL
@@ -46,7 +47,6 @@
     ```sh
     $ kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'; echo
     ```
-  - Copy the resulting string (URL) on your cheat sheet
 
 - Get the service account API bearer token
 
@@ -66,9 +66,10 @@
 
 - Click on <b>Connect new cluster</b>
   - Provide a name of your choice to your cluster connection
-  - Paste the cluster API URL from your cheat sheet 
-  - Paste the bearer token from your cheat sheet 
-  - Click on Connect
+  - Copy the cluster API URL you had printed during the previous step and paste it the <b>URL</b> text box
+  - Copy the cluster bearer token you had printed during the previous step and paste it in the <b>Bearer Token</b> text box
+    - Make sure the token is correct and there are no blank space (space, tab, line feed or carriage return).  
+  - Click on <b>Connect</b>
 
     ![cluster_connection_setup](assets/cluster_connection_setup.png)
 
@@ -76,7 +77,7 @@
 
 You will get an error message displayed. 
 
-What happened?
+What happened? :worried:
 
 ![cluster_connection_error](assets/cluster_connection_error.png)
 
@@ -84,15 +85,15 @@ The error message mentions a problem with the TLS handshake.
 
 Your cluster API endpoint is using an untrusted self-signed certificate. You have 2 options : 
 
-1. Configure the ActiveGate to skip the certificate check
+1. Configure the <b>ActiveGate</b> to skip the certificate check
    - Introduce security risks so not recommended
    - Can be OK for POC or test environments 
    - The procedure is explained in the doc here : https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/configuration/set-up-proxy-authentication-for-activegate/#expand-138option-2-disable-certificate-validation 
 
-2. Add the cluster self-signed certificate to the ActiveGate trusted keystore. 
+2. Add the cluster self-signed certificate to the <b>ActiveGate</b> trusted keystore. 
    - This is what we will do next.
 
-### Add the cluster API certificate to the ActiveGate 
+## Add the cluster API certificate to the ActiveGate 
 
 ### Obtain the certificate
 
@@ -111,7 +112,7 @@ Verify your certificate file:
 
 ### Add the certificate to the keystore
 
-You will then import this certificate to a Java keystore using the Java keytool (installed with the ActiveGate):
+You will then import this certificate to a Java keystore (that we will name `mytrusted.jks`) using the <b>Java keytool</b> (installed with the <b>ActiveGate</b>):
 
 ```sh
 $ sudo /opt/dynatrace/gateway/jre/bin/keytool -import -file dt_k8s_api.pem -alias dt_k8s_api -keystore /var/lib/dynatrace/gateway/ssl/mytrusted.jks
@@ -154,13 +155,21 @@ You need to restart the ActiveGate for the change to the keystore to be effectiv
 
 ## Connect to the cluster API
 
-Go back to your Dynatrace console and try to connect again. This time it should work... :grinning:
+Go back to your Dynatrace console and try to connect again. 
 
-Once connected, go to the dashboard: <b>Menu -> Kubernetes</b>
+<u>Note</u>: You might need enter the <b>Bearer Token</b> again. You can get it with this command:
+
+```sh
+$ kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 -d ; echo
+```
+
+This time it should work... :grinning:
+
+Once connected, go to the dashboard: <i>Menu -> Kubernetes</i>
 
 It will take a few minutes before the dashboard gets populated with data.
 
-Navigate in your Kubernetes cluster monitoring dashboard:
+Navigate in your Kubernetes cluster monitoring view:
 
   - Look at resource <b>usage</b>, <b>requests</b>, <b>limits</b>, <b>available</b>
 
