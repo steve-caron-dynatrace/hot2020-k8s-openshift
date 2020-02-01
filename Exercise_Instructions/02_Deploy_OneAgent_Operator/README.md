@@ -127,7 +127,7 @@ Wait until all pods are ready and then stop the command with `Ctrl-C`
 
 ![dynatrace_pods](assets/dynatrace_pods.png)
 
-In the Dynatrace console, look into the <b>Deployment Status</b> and <b>Hosts</b> dashboards, you should see your nodes listed.
+In the Dynatrace console, look into the <b>Deployment Status</b> and <b>Hosts</b> view (from the left menu), you should see your nodes listed as hosts.
 
 ![hosts](assets/hosts.png)
 

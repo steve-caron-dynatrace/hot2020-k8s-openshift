@@ -2,11 +2,11 @@
 
 ## Create Management Zones
 
-In a similar manner than the [previous exercise](../06_Management_Zones_by_application), create additional Management Zones to distinguish the different namespaces of the Sock Shop application.
+In a similar manner than the [previous exercise](../06_Management_Zones_by_application), create additional <b>Management Zones</b> to distinguish the different namespaces of the Sock Shop application.
 
 - <b>Hint #1</b> : Namespaces are Kubernetes properties captured automatically by Dynatrace
-- <b>Hint #2</b> : Your Management Zones will need 2 conditions
-- <b>Hint #3</b> : You need to define 2 Management Zones
+- <b>Hint #2</b> : Your <b>Management Zones</b> will need 2 conditions
+- <b>Hint #3</b> : You need to define 2 <b>Management Zones</b>
 
 Solution is available [here](./07_1_Solution).
 

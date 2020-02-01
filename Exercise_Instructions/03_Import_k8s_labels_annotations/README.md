@@ -44,7 +44,7 @@ Wait a few minutes :grinning: seriously, let's take a 10 minutes break here
 
 In the Dynatrace console: 
 
-- Navigate to one of the process group, for example the front-end (Technologies -> Node.js -> server.js -> Process group details)
+- Navigate to one of the process group, for example the front-end (<i>Technologies -> Node.js -> server.js -> Process group details</i>)
 - Expand the properties. 
 - The imported Kubernetes labels will show as tags and the annotations as properties.
 

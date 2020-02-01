@@ -6,25 +6,25 @@ Take a quick look at the current <b>Process</b> and <b>Process Group</b> naming 
 
 You can see processes and process groups in different locations in the Dynatrace console:
 
-- Technologies dashboard : process groups by underlying technology
-- Hosts dashboard : processes monitored on a host (Kubernetes node)
-- Transactions & Services dashboard : for a given Service, the infographic shows the Process Group Instances implementing the Service
-- Smartscape
+- <b>Technologies</b> view : process groups by underlying technology
+- <b>Hosts</b> view : processes monitored on a host (Kubernetes node)
+- <b>Transactions & Services</b> view : for a given <B>Service</b>, the infographic shows the <b>Process Group Instances</b> implementing the <b>Service</b>
+- <b>Smartscape</b>
 
-## Configure custom Process Group naming rule
+## Configure custom Process Group naming rules
 
 What we want to achieve is having process groups showing up with naming that tells us:
 
-- Whether the process runs in Kubernetes or not. Let's have the Process Group name start with ”k8s" for those in Kubernetes.
+- Whether the process runs in Kubernetes or not. Let's have the Process Group name start with `k8s` for those in Kubernetes.
 - What project is the process (container) part of. Your company likely has multiple projects running in the same cluster.
 - The process/container/pod namespace, which in our case with Sock Shop also tells us if it's production or dev.
 - The container name, which correspond to our microservice name
 
-Target Process Group naming convention :  <b>k8s-project-namespace-container</b>
+Target Process Group naming convention :  `k8s-project-namespace-container`
   
 Let's apply that configuration in Dynatrace!
 
-- Go in <b>Settings -> Processes and containers -> Process group naming rules</b> and click <b>Add a new rule</b>
+- Go in <i>Settings -> Processes and containers -> Process group naming rules</i> and click <b>Add a new rule</b>
 - Provide a name to the rule, for example : `Kubernetes Project.Namespace.Container`
 - First, we want this rule to apply only to containerized processes running in Kubernetes. This is done by defining a condition.
   - In the conditions drop-down, select the property `"Kubernetes namespace"` and the condition `"exists"`
@@ -39,7 +39,7 @@ Let's apply that configuration in Dynatrace!
 
 ### Preview 
 
-Before saving a rule that will affect the way information is displayed to Dynatrace users, you would probably like to have a glance of the potential result. 
+Before saving a rule that will affect the way information is displayed to Dynatrace users, you would probably like to have a glance at the potential result. 
 
 This is possible!
 
@@ -52,6 +52,7 @@ This is possible!
 Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom Process naming rule.
 
 ![PG_naming_validation](assets/PG_naming_validation.png)
+
 
 
 ---

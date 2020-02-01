@@ -2,13 +2,13 @@
 
 ## Management Zones
 
-In the end, you should have the following Management Zones defined:
+In the end, you should have the following <b>Management Zones</b> defined:
 
 ![management_zones](assets/management_zones.png)
 
 ## Management Zone rule
 
-You Management Zone rule should look like this (for <b>production</b> namespace):
+You <b>Management Zone</b> rule should look like this (for <b>production</b> namespace):
 
 ![management_zone_rule_namespace](assets/management_zone_rule_namespace.png)
 
