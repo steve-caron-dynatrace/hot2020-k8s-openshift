@@ -1,8 +1,8 @@
-# Exercise #9 Set up alert notifications
+# Exercise #10 Set up alert notifications
 
 <u>Scenario:</u> 
 
-The Kubernetes platform admin team work with different tools and they want to receive their alert notifications by email.
+The Kubernetes platform admin team works with different tools and they want to receive their alert notifications by email.
 
 On the other hand, the teams in charge of development and support/ops of the Sock Shop services use a chatops tool such as Slack. There are specific Slack channels for each service and also channels for dev and channels for support/ops.
 
@@ -134,6 +134,6 @@ In order to complete this exercise and have alerts being sent, we need to create
 
 ---
 
-[Previous : #8 RBAC with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Configure k8s cluster monitoring integration](../10_Configure_k8s_cluster_monitoring_integration)
+[Previous : #9 Configure k8s cluster monitoring integration](../09_Configure_k8s_cluster_monitoring_integration) :arrow_backward: :arrow_forward: [Next : #11 Dashboarding](../11_Dashboarding)
 
 :arrow_up_small: [Back to overview](../)

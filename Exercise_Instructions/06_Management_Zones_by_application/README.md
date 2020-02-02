@@ -2,7 +2,7 @@
 
 ## Deploy a new application
 
-<u>Scenario</u> : The company is developing many products. Aside from <i>Sock Shop</i>, a new project, named <i>guestbook</i>, is starting on Kubernetes.
+<u>Scenario</u> : The company is developing many products. Aside from <b>Sock Shop</b>, a new project, named <b>guestbook</b>, is starting on Kubernetes.
 
 Execute the following script to deploy guestbook :
 
@@ -19,13 +19,15 @@ Take a note of the External-IP for the `frontend` service and copy it in a new b
 
 ![guestbook_services](assets/guestbook_services.png)
 
+<u>NOTE</u>: If the page does not load, wait one or two minutes and try again. It is possible it takes some time for the DNS to be updated.
+
 ### Enter a comment
 
 The app is still very basic :grinning: . 
 
-It's a simple PHP frontend taking comments as input and writing those to a Redis data store. If you reload the app in a different browser, you will see the comments entered being displayed.
+It's a simple PHP frontend taking comments as input and writing those to a Redis data store. If you reload the app in a different browser, the page will load with the comments previously entered being displayed.
 
-- Enter a few comments to generate transactions.
+- Enter a few comments to generate transactions
 
 ![guestbook_app](assets/guestbook_app.png)
 
@@ -99,6 +101,15 @@ Repeat the same steps for the <b>guestbook</b> app. The only differences are:
 - Clicking on this button will list the available <b>Management Zones</b> 
 
 ![management_zones_filter](assets/management_zones_filter.png)
+
+- Select a <b>Management Zone</b> and navigate to the <b>Services</b> and <b>Technologies</b> views. Notice the difference, the lists are filtered according to the selected zone.
+
+You might have noticed that the <b>Applications</b> and <b>Synthetic Monitors</b> are not part of the defined <b>Management Zones</b>. 
+
+- Again, this is normal. <b>Applications</b> and <b>Synthetic Monitors</b> do not inherit auto-tags from <b>Services</b>, <b>Process Groups</b> or <b>Hosts</b>. 
+- They need their own tags to be defined and a corresponding <b>Management Zone rule</b> to be added.
+
+If you look at the <b>Sock Shop - Production</b> application, you will see it already has `product` and `stage` tags assigned. This comes from auto-tagging rules imported via REST API at the same time the web app configuration was imported.
 
 ---
 

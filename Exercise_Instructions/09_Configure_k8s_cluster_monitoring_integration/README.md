@@ -1,4 +1,4 @@
-# Exercise #10 Configure Kubernetes cluster monitoring integration
+# Exercise #9 Configure Kubernetes cluster monitoring integration
 
 ## Pre-requisite : Deploy and Environment ActiveGate
 
@@ -8,17 +8,17 @@
 
 ### Install the ActiveGate on your bastion host
 
-- In the Dynatrace console, go to <i>Settings -> Deployment Dynatrace</i>, scroll down to the bottom and click on <b>Install ActiveGate</b>
+- In the Dynatrace console, from the menu, go to <b>Deploy Dynatrace</b>, scroll down to the bottom and click on <b>Install ActiveGate</b>
   
     ![install_ActiveGate](assets/install_ActiveGate.png)
 
 - Select Linux.
-- Copy the wget command (from step 2 - see screenshot below) to download the installer script and paste it to your terminal to run it on your bastion VM.
+- Copy the wget command (from step 2 - see screenshot below) to download the installer script and paste it to your terminal and run it from your bastion VM.
 - Copy the command to run the installer script (step 4 - see screenshot below) and execute it in your terminal with elevated permissions (precede the command with `sudo`)
 
   ![ActiveGate_linux_installation](assets/ActiveGate_linux_installation.png)
 
-- Click on <b>Show deployment status</b> (step 5) to validate the ActiveGate is deployed and connected to your SaaS tenant. See that the Kubernetes module is active. 
+- Click on <b>Show deployment status</b> (step 5) to validate the <b>ActiveGate</b> is deployed and connected to your SaaS tenant. See that the Kubernetes module is active. 
 
 ![deployment_status](assets/deployment_status.png)
 
@@ -54,8 +54,6 @@
     ```sh
     $ kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 -d ; echo
     ```
-  - Copy the resulting string (token) on your cheat sheet.
-        - Make sure the token is correct and there are no blank space
 
 ## Set up connection
 
@@ -99,10 +97,9 @@ Your cluster API endpoint is using an untrusted self-signed certificate. You hav
 
 From your bastion host terminal, execute the following script. 
 
-- The script will prompt you for your cluster API endpoint URL and will produce a PEM file (.pem) containing the API endpoint certificate. 
-  
+- The script will retrieve for your cluster API endpoint URL, use `openssl` to obtain certificate info and will produce a PEM file (.pem) containing the API endpoint certificate.   
     ```sh
-    $ ./get_api_cert.sh
+    $ ./get-api-cert.sh
     ```
 Verify your certificate file:
 
@@ -119,6 +116,7 @@ $ sudo /opt/dynatrace/gateway/jre/bin/keytool -import -file dt_k8s_api.pem -alia
 ```
 
   - This will prompt you for a password. It is : `changeit`
+  - It will also ask you if you want to trust this certificate. Enter : `yes`
 
 You then need to add this keystore as the trusted keystore for the ActiveGate. To do so, you need to specify this in a custom configuration file.
 
@@ -165,9 +163,11 @@ $ kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secret
 
 This time it should work... :grinning:
 
-Once connected, go to the dashboard: <i>Menu -> Kubernetes</i>
+Once connected, in the menu, go to <b>Kubernetes</b>
 
-It will take a few minutes before the dashboard gets populated with data.
+- Click on your cluster to drill-down
+
+<u>NOTE</u>: It will take a few minutes before the dashboard gets populated with data.
 
 Navigate in your Kubernetes cluster monitoring view:
 
@@ -196,6 +196,6 @@ Drill down to a node.
 
 ---
 
-[Previous : #9 Set up alert notifications](../09_Set_up_alert_notifications) :arrow_backward: :arrow_forward: [Next : #10 Configure k8s cluster monitoring integration](../10_Configure_k8s_cluster_monitoring_integration)
+[Previous : #8 Role Based Access Control with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Set up alert notifications](../10__Set_up_alert_notifications)
 
 :arrow_up_small: [Back to overview](../)

@@ -51,15 +51,13 @@ This is possible! :grinning:
 
 ## Validate
 
-Your new custom naming rule should be displayed in <b>Process group naming</b> view, otherwise you forgot to save it... :unamused:
-
-![PG_naming_rules](assets/PG_naming_rules.png)
-
 Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom <b>Process group naming rule.
 
 ![PG_naming_validation](assets/PG_naming_validation.png)
 
+It might take a minute or two for all processes to show up with the new names. If the naming doesn't change, it's probably that you forgot to save the rule... You will have to repeat the previous steps to create it again. :unamused:
 
+![PG_naming_rules](assets/PG_naming_rules.png)
 
 ---
 

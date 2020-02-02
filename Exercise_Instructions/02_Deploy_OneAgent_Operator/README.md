@@ -254,7 +254,9 @@ Give it some time (a few minutes) and then you can go, from the menu, in the <b>
 
 If you manually, from your browser, run transactions in the Production Sock Shop web app with a registered user, you will see your session tagged by user name (user last name is displayed).
 
-## <b>OPTIONAL... but even cooler!</b> :metal: Enable Session Replay
+![user_sessions](assets/user_sessions.png)
+
+## <b>ALSO OPTIONAL... but even cooler!</b> :metal::metal: Enable Session Replay
 
 Dynatrace also allows you to record sessions that you can visually replay.
 
