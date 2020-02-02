@@ -25,17 +25,21 @@ Execute the deployment script:
 $ ./deploy-sockshop.sh
 ```
 ## Validate
-Check the pods deployed in production and in dev
+Check the command output and validate the pods deployed in production and in dev.
+
+Notice the pods status and ready state. They should all be `Running` and `Ready`. 
+
+You can always get the list of Sock Shop pods by running this command: 
+
 ```sh
 $ kubectl get po --all-namespaces -l product=sockshop
 ```
-Notice some pods status and ready state. Watch pods (run the previous command with option `-w` added) until all are running and ready.
 
 ![validation](assets/validate.png)
 
 ## Access the Sock Shop web app
 
-The application deployment created a Service resource of type Load Balancer to expose the frontend service to the public internet. It might take a few minutes before the public IPs become available.
+The application deployment created a <b>Service</b> resource of type <b>Load Balancer</b> to expose the <b>front-end</b> and <b>carts</b> services to the public internet. It might take a few minutes before the public IPs become available.
 You can obtain the app URLs by running this script:
 
 ```sh

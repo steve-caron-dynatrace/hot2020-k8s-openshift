@@ -46,13 +46,13 @@ In the Dynatrace console:
 
 - Navigate to one of the process group, for example the front-end (<i>Technologies -> Node.js -> server.js -> Process group details</i>)
 - Expand the properties. 
-- The imported Kubernetes labels will show as tags and the annotations as properties.
+- The imported Kubernetes <b>labels</b> will show as <b>tags</b> and the <b>annotations</b> as <b>properties</b>.
 
 ![pg_labels_annotations](assets/pg_labels_annotations.png)
 
 ## Search/filter with tags based on labels
 
-- Go in the Technologies or the Services and Transactions view. 
+- Go in the <i>Technologies</i> or the <i>Services and Transactions</i> view. 
 
 - In the Filtered by text box, you will see the available tags that you can select.
 

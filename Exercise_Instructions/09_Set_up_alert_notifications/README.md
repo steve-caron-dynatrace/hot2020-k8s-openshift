@@ -1,8 +1,25 @@
 # Exercise #9 Set up alert notifications
 
-<u>Scenario:</u> The <b>guestbook</b> app is still very early in development. For now the team only want to receive alert notifications by email. 
+<u>Scenario:</u> 
 
-On the other hand, the team in charge of support/ops of the Sock Shop frontend uses a chatops tool such as Slack. They want to receive alert notifications on a Slack channel, but only for alerts affecting the frontend services and running in production.
+The Kubernetes platform admin team work with different tools and they want to receive their alert notifications by email.
+
+On the other hand, the teams in charge of development and support/ops of the Sock Shop services use a chatops tool such as Slack. There are specific Slack channels for each service and also channels for dev and channels for support/ops.
+
+For example: 
+
+- the "carts dev team" only want to receive alerts related to the <b>carts</b> service running in <b>dev</b> on their Slack channel
+  - they don't want to receive anything related to <b>production</b> on that channel
+- the "carts support/ops team" only want to receive <b>production</b> related alerts on their channel and only those involving the <b>carts</b> service
+- both teams are using the Kubernetes platform but they are not in charge of it; this is the platform admin team who does that
+  - in consequence, they don't want to receive infrastructure-only related alerts
+
+## Create an Alerting Profile for the Kubernetes cluster infra
+
+## Create an Alerting Profile for Sock Shop carts dev
+
+## Create an Alerting Profile for Sock Shop carts production
+
 
 ## Create an Alerting Profile for the guestbook app
 
