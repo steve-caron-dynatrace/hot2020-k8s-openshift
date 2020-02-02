@@ -234,8 +234,11 @@ Well, this is of course possible with Dynatrace! And it's just a few clicks to c
 - Go in <i>Application Settings->User tag</i> and click the <b>Add tag (identifier) rule</b>
   1. In the <b>Expression type to capture</b> drop-down, select `CSS selector`
   2. In the <b>CSS selector</b> text box, enter `#howdy > a`
+      - This tells the Dynatrace agent to capture the text displayed on the web page and associated to the CSS selector
+      - This selector corresponds to the full user name (firstname lastname) displayed top right after log in
   3. Toggle on <b>Apply cleanup rule</b>
   4. In the <b>Regex</b> text box, enter `\s(\w+)$`
+      - This regex captures only the last word from a given string (in this case, captures only the last name)    
   5. To test the regex, enter a user full name in the <b>Sample input</b> text box. For example: `Dynatrace Perform`. 
      - Click <b>Test</b>
      - The output will be `Perform`
@@ -247,10 +250,32 @@ Well, this is of course possible with Dynatrace! And it's just a few clicks to c
    
     ![save_tag_rule](assets/save_tag_rule.png)
 
+Give it some time (a few minutes) and then you can go, from the menu, in the <b>User Sessions</b> view and you should now see user sessions displayed by user name.
+
+If you manually, from your browser, run transactions in the Production Sock Shop web app with a registered user, you will see your session tagged by user name (user last name is displayed).
 
 ## <b>OPTIONAL... but even cooler!</b> :metal: Enable Session Replay
 
 Dynatrace also allows you to record sessions that you can visually replay.
+
+<u>NOTE</u>: For replays to render properly, you need to use the <b>Google Chrome</b> browser with the <b>Dynatrace Real User Monitoring</b> extension. Replay will still be available if using different browser or Chrome without the extension but will not be rendered accurately and some objects will be missing.
+
+To enable <b>Session Replay</b>: 
+
+- In the menu, go in <i>Applications</i> then click on <b>Sock Shop - Production</b> then <b>Edit</b> as you did for the previous step.
+- Go in <i>Application Settings->Session Replay</i> and toggle on the <b>Enable Session Replay</b> switch
+
+    ![enable_session_replay](assets/enable_session_replay.png)
+
+- Don't forget to click on the <b>Save</b> button (bottom right)
+
+<u>NOTE</u>: Session replays will only be available for real users, not for Synthetic Monitors. So if you want to watch a replay, you will need to run some transactions, from your browser, on the Production Sock Shop web app.
+
+After running transactions from your browser, give it a few minutes, go in <b>User Sessions</b> and search for your session by user name or filter for Session Replay=yes. You will see sessions with replays have a "Play" icon
+
+![user_session_replay](assets/user_session_replay.png)
+
+Click the "Play" icon to watch the session replay, enjoy!
 
 ---
 

@@ -6,8 +6,8 @@ Take a quick look at the current <b>Process</b> and <b>Process Group</b> naming 
 
 You can see processes and process groups in different locations in the Dynatrace console:
 
-- <b>Technologies</b> view : process groups by underlying technology
-- <b>Hosts</b> view : processes monitored on a host (Kubernetes node)
+- <b>Technologies</b> view : <b>Process Groups</b> by underlying technology
+- <b>Hosts</b> view : processes monitored on a <b>Host</b> (Kubernetes node)
 - <b>Transactions & Services</b> view : for a given <B>Service</b>, the infographic shows the <b>Process Group Instances</b> implementing the <b>Service</b>
 - <b>Smartscape</b>
 
@@ -27,29 +27,35 @@ Let's apply that configuration in Dynatrace!
 - Go in <i>Settings -> Processes and containers -> Process group naming rules</i> and click <b>Add a new rule</b>
 - Provide a name to the rule, for example : `Kubernetes Project.Namespace.Container`
 - First, we want this rule to apply only to containerized processes running in Kubernetes. This is done by defining a condition.
-  - In the conditions drop-down, select the property `"Kubernetes namespace"` and the condition `"exists"`
--For the name format, we can enter free text and/or use placeholders.
-  - A list of available placeholder is displayed as a side note.
-  - Placeholders are in between brackets {} to distinguish from free text
+  - In the <b>Conditions</b> drop-down, select the property `"Kubernetes namespace"` and the condition `"exists"`
+- For the name format, we can enter free text and/or use placeholders.
+  - Placeholders are in between brackets {} to distinguish them from free text
   - Enter this format : 
     - `k8s-{ProcessGroup:Kubernetes:pipeline.project}.{ProcessGroup:KubernetesNamespace}.{ProcessGroup:KubernetesContainerName}`
-  - Don’t forget to save!
 
 ![custom_PG_naming_rule](assets/custom_PG_naming_rule.png)
 
 ### Preview 
 
-Before saving a rule that will affect the way information is displayed to Dynatrace users, you would probably like to have a glance at the potential result. 
+Before saving a rule that will affect the way information is displayed to all Dynatrace users, you would probably like to have a glance at the potential result. 
 
-This is possible!
+This is possible! :grinning:
 
 - Click the <b>Preview</b> button
+  - The left column shows the current auto-detected <b>Process Group</b> names as assigned by built-in rules
+  - The right column shows the new names resulting from the application of the custom rule you defined
 
 ![PG_naming_rule_preview](assets/PG_naming_rule_preview.png)
 
+- <u>DON'T FORGET</u> to click <b>Create rule</b> then <b>Save changes</b> (bottom right button) !!!
+
 ## Validate
 
-Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom Process naming rule.
+Your new custom naming rule should be displayed in <b>Process group naming</b> view, otherwise you forgot to save it... :unamused:
+
+![PG_naming_rules](assets/PG_naming_rules.png)
+
+Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom <b>Process group naming rule.
 
 ![PG_naming_validation](assets/PG_naming_validation.png)
 
