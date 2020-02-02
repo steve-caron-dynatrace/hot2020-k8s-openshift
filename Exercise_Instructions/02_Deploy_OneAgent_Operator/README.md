@@ -277,6 +277,10 @@ After running transactions from your browser, give it a few minutes, go in <b>Us
 
 Click the "Play" icon to watch the session replay, enjoy!
 
+You can also click the picture below to watch a Youtube video of a session replay.
+
+[![replay_video](https://img.youtube.com/vi/7kNSGCbC82g/0.jpg)](https://youtu.be/7kNSGCbC82g)
+
 ---
 
 [Previous : #1 Deploy the Sock Shop app](../01_Deploy_Sock_Shop) :arrow_backward: :arrow_forward: [Next : #3 Automatic import of k8s labels and annotations](../03_Import_k8s_labels_annotations)
