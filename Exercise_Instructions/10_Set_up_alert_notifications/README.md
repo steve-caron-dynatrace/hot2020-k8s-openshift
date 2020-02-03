@@ -316,6 +316,6 @@ Eventually, you will receive a Slack message in the `#carts-dev` channel notifyi
 
 ---
 
-[Previous : #9 Configure k8s cluster monitoring integration](../09_Configure_k8s_cluster_monitoring_integration) :arrow_backward: :arrow_forward: [Next : #11 Dashboarding](../11_Dashboarding)
+[Previous : #9 Configure k8s cluster monitoring integration](../09_Configure_k8s_cluster_monitoring_integration) :arrow_backward: 
 
 :arrow_up_small: [Back to overview](../)
