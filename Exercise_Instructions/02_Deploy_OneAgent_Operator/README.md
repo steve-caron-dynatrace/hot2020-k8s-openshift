@@ -174,7 +174,9 @@ $ ./recycle-sockshop-app-pods.sh
 
 ## Validate in Dynatrace
 
+In the Dynatrace console, in the menu, go to the <b>Hosts</b> view. You should see 3 <b>Hosts</b> which are your cluster worker nodes.
 
+![hosts](assets/hosts.png)
 
 ## Configure Dynatrace
 
