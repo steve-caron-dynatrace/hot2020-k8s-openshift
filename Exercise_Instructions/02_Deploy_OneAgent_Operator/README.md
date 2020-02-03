@@ -264,6 +264,8 @@ Dynatrace also allows you to record sessions that you can visually replay.
 
 <u>NOTE</u>: For replays to render properly, you need to use the <b>Google Chrome</b> browser with the <b>Dynatrace Real User Monitoring</b> extension. Replay will still be available if using different browser or Chrome without the extension but will not be rendered accurately and some objects will be missing.
 
+![chrome_extension](assets/chrome_extension.png)
+
 To enable <b>Session Replay</b>: 
 
 - In the menu, go in <i>Applications</i> then click on <b>Sock Shop - Production</b> then <b>Edit</b> as you did for the previous step.
