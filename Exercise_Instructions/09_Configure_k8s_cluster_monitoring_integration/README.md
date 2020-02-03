@@ -1,6 +1,6 @@
 # Exercise #9 Configure Kubernetes cluster monitoring integration
 
-## Pre-requisite : Deploy and Environment ActiveGate
+## Pre-requisite : Deploy an Environment ActiveGate
 
 - You need an <b>Environment ActiveGate</b> to connect Dynatrace to your Kubernetes cluster API
 - You typically deploy the ActiveGate on a dedicated VM; running the ActiveGate in a container is not currently supported (but planned for the future)
@@ -15,7 +15,8 @@
 
 - Select Linux.
 - Copy the wget command (from step 2 - see screenshot below) to download the installer script and paste it to your terminal and run it from your bastion VM.
-- Copy the command to run the installer script (step 4 - see screenshot below) and execute it in your terminal with elevated permissions (precede the command with `sudo`)
+- Copy the command to run the installer script (step 4 - see screenshot below)
+- Execute it in your terminal with elevated permissions <b><u>(precede the command with `sudo`)</u></b>
 
   ![ActiveGate_linux_installation](assets/ActiveGate_linux_installation.png)
 
@@ -104,9 +105,10 @@ From your bastion host terminal, execute the following script.
     ```
 Verify your certificate file:
 
-    ```sh
-    $ cat dt_k8s_api.pem
-    ```
+
+```sh
+$ cat dt_k8s_api.pem
+```
 
 ### Add the certificate to the keystore
 
@@ -207,7 +209,7 @@ Drill down to a node.
     
     ![cluster_management_zone](assets/cluster_management_zone.png)
 
-5. Click <b>Save</b>
+5. Click <b>Save changes</b>
 ---
 
 [Previous : #8 Role Based Access Control with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Set up alert notifications](../10__Set_up_alert_notifications)
