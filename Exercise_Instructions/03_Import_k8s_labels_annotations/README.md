@@ -1,4 +1,4 @@
-# Exercise #3 Automatic import of Kubernetes labels and annotations
+# Exercise #3 Set up automatic import of Kubernetes labels and annotations
 
 ## Explore metadata in pod definitions
 
