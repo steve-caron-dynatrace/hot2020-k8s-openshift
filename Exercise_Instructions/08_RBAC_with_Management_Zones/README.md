@@ -1,11 +1,9 @@
 # Exercise #8 Role-Based Access Control with Management Zones
 
-
-
 <u><b>Scenario</b></u>: The Sock Shop app is mostly developed by contractors
-- There is an internal devops team but otherwise the developers are not company employee 
+- There is an internal devops team but otherwise the developers are not company employees 
 - The corporate policies are that non-employees should not have access to any customer or production-related data
-- Both dev and prod apps are running on a Kubernetes cluster so the same Dynatrace environment has data from multiple namespace altogether
+- Both dev and prod apps are running on a Kubernetes cluster so the same Dynatrace environment has data from multiple namespaces altogether
 - During the previous exercises, we have seem how we can define Management Zones to segregate views based on custom rules
 - Let's now see how we can provide role-based access control to Management Zones so Sock Shop developers can only access the data they need and are allowed to. 
 
@@ -54,6 +52,6 @@
 
 ---
 
-[Previous : #7 Create Management Zones by application](../07_Management_Zones_by_namespace) :arrow_backward: :arrow_forward: [Next : #9 Set up alert notifications](../09_Set_up_alert_notifications)
+[Previous : #7 Create Management Zones by application](../07_Management_Zones_by_namespace) :arrow_backward: :arrow_forward: [Next : #9 Configure Kubernetes cluster monitoring integration](../09_Configure_k8s_cluster_monitoring_integration)
 
 :arrow_up_small: [Back to overview](../)

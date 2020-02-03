@@ -33,7 +33,7 @@ It's a simple PHP frontend taking comments as input and writing those to a Redis
 
 ## View the guestbook app in Dynatrace
 
-- Switch to the Dynatrace console, in the <b>Services</b> view , you will see 2 new services
+- Switch to the Dynatrace console, in the <b>Services</b> view, you will see 2 new services
 - In the <b>Technologies</b> view, you will also see new technologies associated to the guestbook app processes (Apache HTTP Server, PHP and Redis)
 - Select one of those 2 services and drill-down to the underlying process group. Expand the properties and take a look.
 
@@ -56,7 +56,7 @@ The `product` tag (based on the pod label) is a good candidate as a condition fo
 The rule will be based on Process groups <b>(1)</b>. 
 - <u>Note</u>: It would also be valid to base it on Services.
 
-The condition is based on a <b>Process Group</b> tag, `product` <b>(2)</b>, auto-imported from a Kubernetes label and of value equal to `sockshop` <b>(3)</b> 
+The condition is based on a <b>Process Group</b> tag <b>(2)</b>, `product`, auto-imported from a Kubernetes label and of value equal to `sockshop` <b>(3)</b> 
 
 ![management_zone_rule_sockshop](assets/management_zone_rule_sockshop.png)
 

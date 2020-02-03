@@ -51,7 +51,7 @@ This is possible! :grinning:
 
 ## Validate
 
-Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom <b>Process group naming rule.
+Navigate to <b>Technologies</b>, <b>Hosts</b> and <b>Transactions & Services</b> views to look at the applied custom <b>Process group naming rule</b>.
 
 ![PG_naming_validation](assets/PG_naming_validation.png)
 
