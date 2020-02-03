@@ -8,6 +8,7 @@
 
 ### Install the ActiveGate on your bastion host
 
+- Make sure you are logged back in the Dynatrace console with your student account. You will need Dynatrace admin permissions for this exercise.
 - In the Dynatrace console, from the menu, go to <b>Deploy Dynatrace</b>, scroll down to the bottom and click on <b>Install ActiveGate</b>
   
     ![install_ActiveGate](assets/install_ActiveGate.png)
@@ -194,6 +195,19 @@ Drill down to a node.
 
 ![host_view](assets/host_view.png)
 
+## Create Management Zone for the k8s cluster
+
+1. Click on the caret next <b>Cluster utilization</b> (top) to expand to configuration options
+2. Click on <b>Create management zone</b>
+
+    ![create_management_zone](assets/create_management_zone.png)
+
+3. This will bring you to the <b>Management Zone</b> definition screen, which will be pre-populated with rules associated to the cluster
+4. We want to focus on infra and the platform, we will remove the Services. Click on the X to next to Services to delete that rule.
+    
+    ![cluster_management_zone](assets/cluster_management_zone.png)
+
+5. Click <b>Save</b>
 ---
 
 [Previous : #8 Role Based Access Control with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Set up alert notifications](../10__Set_up_alert_notifications)
