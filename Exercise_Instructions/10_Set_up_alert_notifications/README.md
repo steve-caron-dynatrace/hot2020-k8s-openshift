@@ -19,7 +19,7 @@ For example:
 ### Create an Alerting Profile for the Kubernetes platform admin team
 
 - In the menu, go in <i>Settings -> Alerting -> Alerting profiles</i>
-- Create a new profile named : `ks8 infra`
+- Create a new profile named : `k8s infra`
 - In the <b>Define management zone filter for profile</b> select `[Kubernetes] My HOT k8s cluster`
 - Expand the <b>Resource alert</b> Severity Rule. Set the <b>Send notification if a problem remains open longer than</b> to `5 minutes`. Click <b>Save</b>
 
@@ -55,7 +55,7 @@ You will set up problem notification to send emails to the Kubernetes platform a
 - Create a new profile named : `carts dev`
 - In the <b>Define management zone filter for profile</b> select `ns:dev`
 - The dev team environment have their apps running under tests. 
-  - The tests environment are not always up. 
+  - The test environments are not always up. 
   - So they're not concerned by availability. 
   - Their concerns are performance, errors and resource utilization
 - So remove <b>Severity Rules</b> to only keep:
@@ -89,7 +89,7 @@ You will set up problem notification to send messages to the carts dev team via 
   - Replace `<your_name>` with your name or whatever you prefer that can identify yourself
 - At the bottom, select the `carts dev` <b>Alerting Profile</b>.
 - Click <b>Send test notification</b> to validate your configuration 
-- Open the [#carts-dev Slack channel](https://hot-k8s.slack.com/archives/CTF9PTMNU)
+- In your browser, open the `#carts-dev` Slack channel using this URL : `https://hot-k8s.slack.com/archives/CTF9PTMNU`
   - User name : `perform@email.com`
   - Password : `performHOT`
 - Look at the test messages and find yours
@@ -213,7 +213,7 @@ $ ./deploy-carts-new-build.sh
 
     ![host_consuming_processes](assets/host_consuming_processes.png)
 
-- This issue had the potential to create larget problems impacting the whole cluster and the rest of the workload. The pod definition in this case does not have any resource limit. But the service itself needs to be fixed and until then, we will remove this from the cluster.
+- This issue had the potential to create bigger problems impacting the whole cluster and the rest of the workload. The pod definition in this case does not have any resource limit. But the service itself needs to be fixed and until then, we will remove this from the cluster.
 
     ```sh
     $ ./undeploy-hot-new-service.sh
@@ -222,7 +222,7 @@ $ ./deploy-carts-new-build.sh
 - The CPU consumption on the nodes will go back to normal. Within a few minutes you will receive a `RESOLVED Problem` email notification.
 
 
-- If you look back at Slack, you should have received notifications on the `#carts-support-ops` channel; if not, wait a bit.
+If you look back at Slack, you should have received notifications on the `#carts-support-ops` channel; if not, wait a bit.
   
   ![slack_cart_support_ops_problem_open](assets/slack_carts_support_ops_problem_open.png)
 
@@ -232,12 +232,9 @@ $ ./deploy-carts-new-build.sh
 
 - The <b>carts</b> service is experiencing a significant transaction failure rate increase, which is always bad but even worse this time because we are in the promo campaign. :rage: 
 - Getting back into Dynatrace
-  - You can look drill-down to: 
-    - <b>impacted users</b>
-    - <b>impacted service</b>
-    - <b>Analyze failure rate degradation</b>
+  - You can look drill-down to <b>Analyze failure rate degradation</b>
 
-        ![carts_promo_failure_analysis](assets/carts_promo_failure_analysis.png)
+    ![carts_promo_failure_analysis](assets/carts_promo_failure_analysis.png)
 
     - You can see the error message: something is not implemented right in the promo campaign... But this is affecting the whole <b>carts</b> service and no customer can add items to the cart anymore... This is bad... :grimacing:
     - Good thing we had the promo campaign deployed using a feature flag! We can easily turn off the flag and things should go back to normal.
@@ -313,6 +310,8 @@ It will take about 5 minutes for the new carts pod to become ready.
 Eventually, you will receive a Slack message in the `#carts-dev` channel notifying the problem is resolved.
 
 ![slack_carts_dev_problem_resolved](assets/slack_carts_dev_problem_resolved.png)
+
+<b><u>ONE LAST THING</u></b>You should disable or delete your alerting profiles after this class if you don't want to continue receive alert emails.
 
 ---
 
