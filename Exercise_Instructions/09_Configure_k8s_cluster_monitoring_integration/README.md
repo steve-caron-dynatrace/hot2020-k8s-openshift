@@ -212,6 +212,6 @@ Drill down to a node.
 5. Click <b>Save changes</b>
 ---
 
-[Previous : #8 Role Based Access Control with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Set up alert notifications](../10__Set_up_alert_notifications)
+[Previous : #8 Role Based Access Control with Management Zones](../08_RBAC_with_Management_Zones) :arrow_backward: :arrow_forward: [Next : #10 Set up alert notifications](../10_Set_up_alert_notifications)
 
 :arrow_up_small: [Back to overview](../)
