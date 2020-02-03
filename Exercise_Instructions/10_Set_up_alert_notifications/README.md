@@ -161,7 +161,9 @@ $ ./deploy-hot-new-service.sh
 ```
 ### Turn on the promo campaign
 
-The marketing team has a promo campaign they had implemented. The project was fast-tracked and is now deployed in production. 
+The marketing team has a promo campaign they had implemented. The project was fast-tracked and is now deployed in production.
+
+![promo_socks](assets/promo_socks.png)
 
 - The deployment mode for this promo campaign is using a feature flag
 - By default, the promo is disabled but it can be enabled on the fly using an API call
