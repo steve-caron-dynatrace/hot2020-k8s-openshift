@@ -18,7 +18,7 @@
 
 ### [#7 : Deploy the OneAgent Operator](./07_Management_Zones_by_namespace/README.md)
 
-### [#8 : Deploy the OneAgent Operator](./08_RBAC_with_Management_Zones/README.md
+### [#8 : Deploy the OneAgent Operator](./08_RBAC_with_Management_Zones/README.md)
 
 ### [#9 : Deploy the OneAgent Operator](./09_Configure_k8s_cluster_monitoring_integration/README.md)
 
