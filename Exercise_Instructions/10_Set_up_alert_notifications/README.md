@@ -84,7 +84,7 @@ You will set up problem notification to send messages to the carts dev team via 
 - Enter a name of your choice for the setting, for example: `carts dev team`
 - Use the following webhook URL:
   - `https://hooks.slack.com/services/TSUACBL6B/BSF0ZKRQB/`
-    - For which you will add this: at the end: `TJUjduBvQ4wFW0sR811QwC7O`
+    - For which you will add this, at the end: `TJUjduBvQ4wFW0sR811QwC7O`
 - Enter the following channel: `#carts-dev`
 - In title, enter `<your_name> {State} Problem {ProblemID} {ProblemTitle} {ImpactedEntity}`
   - Replace `<your_name>` with your name or whatever you prefer that can identify yourself
@@ -134,7 +134,8 @@ You will set up problem notification to send messages to the carts support/ops t
 - Select <b>Slack</b>
 - Enter a name of your choice for the setting, for example: `carts support/ops team`
 - Use the following webhook URL:
-  - `https://hooks.slack.com/services/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 `
+  - `https://hooks.slack.com/services/TSUACBL6B/BT2G9TE7L/`
+    - For which you will add this, at the end: `VWExFaiDu4i4cwaV9OzfAqPt`
 - Enter the following channel: `#carts-support-ops`
 - In title, enter `<your_name> {State} Problem {ProblemID} {ProblemTitle} {ImpactedEntity}`
   - Replace `<your_name>` with your name or whatever you prefer that can identify yourself
