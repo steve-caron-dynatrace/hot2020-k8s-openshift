@@ -83,7 +83,8 @@ You will set up problem notification to send messages to the carts dev team via 
 - Select <b>Slack</b>
 - Enter a name of your choice for the setting, for example: `carts dev team`
 - Use the following webhook URL:
-  - `https://hooks.slack.com/services/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`
+  - `https://hooks.slack.com/services/TSUACBL6B/BSF0ZKRQB/`
+    - For which you will add this: at the end: `TJUjduBvQ4wFW0sR811QwC7O`
 - Enter the following channel: `#carts-dev`
 - In title, enter `<your_name> {State} Problem {ProblemID} {ProblemTitle} {ImpactedEntity}`
   - Replace `<your_name>` with your name or whatever you prefer that can identify yourself
